@@ -1,6 +1,6 @@
-namespace Domain.Entities.Buckets.Parameters;
+namespace Domain.Entities.Carts.Parameters;
 
-public readonly struct CreateBucketParameters
+public readonly struct SetCartClientParameters
 {
     public required Guid ClientId { get; init; }
 

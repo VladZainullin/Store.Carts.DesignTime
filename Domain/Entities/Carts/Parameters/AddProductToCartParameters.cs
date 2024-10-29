@@ -1,7 +1,7 @@
 // ReSharper disable UnusedAutoPropertyAccessor.Global
-namespace Domain.Entities.Buckets.Parameters;
+namespace Domain.Entities.Carts.Parameters;
 
-public readonly struct RemoveProductFromBucketParameters
+public readonly struct AddProductToCartParameters
 {
     public required Guid ProductId { get; init; }
 

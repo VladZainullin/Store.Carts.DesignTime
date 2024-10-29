@@ -1,4 +1,4 @@
-namespace Domain.Entities.ProductInBuckets.Parameters;
+namespace Domain.Entities.ProductInCarts.Parameters;
 
 public readonly struct SetProductInBucketQuantityParameters
 {

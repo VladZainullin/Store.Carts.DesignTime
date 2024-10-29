@@ -1,8 +1,8 @@
-using Domain.Entities.ProductInBuckets.Parameters;
+using Domain.Entities.ProductInCarts.Parameters;
 
-namespace Domain.Entities.ProductInBuckets;
+namespace Domain.Entities.ProductInCarts;
 
-public sealed class ProductInBucket
+public sealed class ProductInCart
 {
     private Guid _id = Guid.NewGuid();
 
@@ -14,13 +14,13 @@ public sealed class ProductInBucket
     private DateTimeOffset _createdAt;
     private DateTimeOffset _updatedAt;
     
-    private ProductInBucket()
+    private ProductInCart()
     {
     }
 
-    internal ProductInBucket(CreateProductInBucketParameters parameters) : this()
+    internal ProductInCart(CreateProductInCartParameters parameters) : this()
     {
-        SetBucket(new SetProductInBucketBucketParameters
+        SetBucket(new SetProductInCartBucketParameters
         {
             BucketId = parameters.BucketId,
             TimeProvider = parameters.TimeProvider
@@ -53,19 +53,19 @@ public sealed class ProductInBucket
         _updatedAt = parameters.TimeProvider.GetUtcNow();
     }
 
-    private void SetBucket(SetProductInBucketBucketParameters parameters)
+    private void SetBucket(SetProductInCartBucketParameters parameters)
     {
         _bucketId = parameters.BucketId;
         _updatedAt = parameters.TimeProvider.GetUtcNow();
     }
 
-    public void AddProduct(AddProductInBucketQuantityParameters parameters)
+    public void AddProduct(AddProductInCartQuantityParameters parameters)
     {
         _quantity = parameters.Quantity;
         _updatedAt = parameters.TimeProvider.GetUtcNow();
     }
     
-    public void RemoveProduct(RemoveProductInBucketQuantityParameters parameters)
+    public void RemoveProduct(RemoveProductInCartQuantityParameters parameters)
     {
         _quantity = parameters.Quantity;
         _updatedAt = parameters.TimeProvider.GetUtcNow();

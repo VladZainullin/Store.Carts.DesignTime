@@ -1,10 +1,10 @@
-using Domain.Entities.Buckets.Parameters;
-using Domain.Entities.ProductInBuckets;
-using Domain.Entities.ProductInBuckets.Parameters;
+using Domain.Entities.Carts.Parameters;
+using Domain.Entities.ProductInCarts;
+using Domain.Entities.ProductInCarts.Parameters;
 
-namespace Domain.Entities.Buckets;
+namespace Domain.Entities.Carts;
 
-public sealed class Bucket
+public sealed class Cart
 {
     private Guid _id = Guid.NewGuid();
 
@@ -13,15 +13,15 @@ public sealed class Bucket
     private DateTimeOffset _createdAt;
     private DateTimeOffset _updatedAt;
 
-    private readonly List<ProductInBucket> _products = [];
+    private readonly List<ProductInCart> _products = [];
 
-    private Bucket()
+    private Cart()
     {
     }
 
-    public Bucket(CreateBucketParameters parameters) : this()
+    public Cart(CreateCartParameters parameters) : this()
     {
-        SetClient(new SetBucketClientParameters
+        SetClient(new SetCartClientParameters
         {
             ClientId = parameters.ClientId,
             TimeProvider = parameters.TimeProvider
@@ -39,22 +39,22 @@ public sealed class Bucket
 
     public DateTimeOffset UpdatedAt => _updatedAt;
 
-    public IReadOnlyCollection<ProductInBucket> Products => _products.AsReadOnly();
+    public IReadOnlyCollection<ProductInCart> Products => _products.AsReadOnly();
 
-    private void SetClient(SetBucketClientParameters parameters)
+    private void SetClient(SetCartClientParameters parameters)
     {
         _clientId = parameters.ClientId;
         _updatedAt = parameters.TimeProvider.GetUtcNow();
     }
 
-    public void AddProduct(AddProductToBucketParameters parameters)
+    public void AddProduct(AddProductToCartParameters parameters)
     {
         if (_products.Count == default) return;
         
         var productInBucket = _products.SingleOrDefault(p => p.Id == parameters.ProductId);
         if (ReferenceEquals(productInBucket, default))
         {
-            var newProductInBucket = new ProductInBucket(new CreateProductInBucketParameters
+            var newProductInBucket = new ProductInCart(new CreateProductInCartParameters
             {
                 Quantity = parameters.Quantity,
                 ProductId = parameters.ProductId,
@@ -67,21 +67,21 @@ public sealed class Bucket
             return;
         }
         
-        productInBucket.AddProduct(new AddProductInBucketQuantityParameters
+        productInBucket.AddProduct(new AddProductInCartQuantityParameters
         {
             Quantity = parameters.Quantity,
             TimeProvider = parameters.TimeProvider
         });
     }
 
-    public void RemoveProduct(RemoveProductFromBucketParameters parameters)
+    public void RemoveProduct(RemoveProductFromCartParameters parameters)
     {
         if (_products.Count == default) return;
         
         var productInBucket = _products.SingleOrDefault(p => p.Id == parameters.ProductId);
         if (ReferenceEquals(productInBucket, default)) return;
         
-        productInBucket.RemoveProduct(new RemoveProductInBucketQuantityParameters()
+        productInBucket.RemoveProduct(new RemoveProductInCartQuantityParameters()
         {
             Quantity = parameters.Quantity,
             TimeProvider = parameters.TimeProvider
@@ -93,7 +93,7 @@ public sealed class Bucket
         }
     }
 
-    public void Clean(CleanBucketParameters parameters)
+    public void Clean(CleanCartParameters parameters)
     {
         _products.Clear();
         _updatedAt = parameters.TimeProvider.GetUtcNow();
