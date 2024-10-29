@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contracts", "contracts", "{51B8785F-8626-400F-87F4-E5038D982163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Contracts", "Persistence.Contracts\Persistence.Contracts.csproj", "{49DF5D89-5E40-4752-91F3-6167FC6B4174}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,11 +24,17 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3E9E44ED-6A57-4F64-9EBD-5A92B02D23F8} = {8EFF6ACD-3977-48A4-B8F6-A633E8DB8DF1}
+		{51B8785F-8626-400F-87F4-E5038D982163} = {8EFF6ACD-3977-48A4-B8F6-A633E8DB8DF1}
+		{49DF5D89-5E40-4752-91F3-6167FC6B4174} = {51B8785F-8626-400F-87F4-E5038D982163}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3E9E44ED-6A57-4F64-9EBD-5A92B02D23F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E9E44ED-6A57-4F64-9EBD-5A92B02D23F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9E44ED-6A57-4F64-9EBD-5A92B02D23F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9E44ED-6A57-4F64-9EBD-5A92B02D23F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49DF5D89-5E40-4752-91F3-6167FC6B4174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DF5D89-5E40-4752-91F3-6167FC6B4174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DF5D89-5E40-4752-91F3-6167FC6B4174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49DF5D89-5E40-4752-91F3-6167FC6B4174}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
